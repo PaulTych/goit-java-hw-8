@@ -7,7 +7,7 @@ public class MyHashMap<K, V> {
     private V value;
     private final static int DEFAULT_CAPACITY = 5;
     private int size;
-    private Node<K, V> mapTable[] = new Node[DEFAULT_CAPACITY];
+    private final Node<K, V>  mapTable[] = new Node[DEFAULT_CAPACITY];
 
     private static class Node<K, V> {
         final int hash;
@@ -53,15 +53,15 @@ public class MyHashMap<K, V> {
     }
 
     static int index(Object key) {
-        return (key == null) ? 0 : key.hashCode() % DEFAULT_CAPACITY;
+        return key.hashCode() % DEFAULT_CAPACITY;
     }
 
     private int existCell(Object key) {
-        if (key == null) {
-            if (mapTable[0].getKey() == null) {
-                return 0;
-            }
-        }
+//        if (key == null) {
+//            if (mapTable[0].getKey() == null) {
+//                return 0;
+//            }
+//        }
         int i = index(key.hashCode());
         if (mapTable[i] == null) {
             return -1;
@@ -105,7 +105,6 @@ public class MyHashMap<K, V> {
             size++;
         }
     }
-
     public void remove(Object key) {
         if (existKey(key) != null) {
             int i = index(key);

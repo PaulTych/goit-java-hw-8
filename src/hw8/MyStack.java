@@ -46,7 +46,9 @@ public class MyStack <E>{
             }
             if (curItem.prev != null) {
                 curItem.prev.next = curItem.next;
-            }
+            } else {
+            this.first= curItem.next;
+        }
             curItem = null;
             this.size--;
         }

@@ -2,7 +2,7 @@ package hw8;
 
 public class mainTestHW8 {
     public static void main(String[] args) {
-        MyArrayList <String> array = new MyArrayList<>(String.class);
+        MyArrayList <String> array = new MyArrayList<>(String.class, 0);
         String o1 = "Test";
         String o2 = "";
         System.out.println("----------------------Test ArrayList--------------------------------");
@@ -16,7 +16,7 @@ public class mainTestHW8 {
         o2 = array.get(2);
         System.out.println("Get 2nd element: " + o2);
         array.remove(2);
-        System.out.println("Array after remove:" + array);
+        System.out.println("Array after remove 2nd element:" + array);
         array.clear();
         System.out.println("Array after clear:" + array);
 
@@ -47,9 +47,9 @@ public class mainTestHW8 {
         System.out.println("Queue after add: " + queue);
         System.out.println("Queue size: "+queue.size());
         o2 = queue.peek();
-        System.out.println("Peek 2nd element: "+o2);
+        System.out.println("Peek element: "+o2);
         o2 = queue.poll();
-        System.out.println("Poll 2nd element: "+o2);
+        System.out.println("Queue after poll element: "+queue);
         queue.remove(2);
         System.out.println("Queue after remove:" + queue);
         queue.clear();
@@ -81,7 +81,7 @@ public class mainTestHW8 {
         hashMap.put("Vova","class1b");
         hashMap.put("John2","class2b");
         hashMap.put("Den2","class1a");
-        hashMap.put("Vova2","class1b");
+        hashMap.put("null","class1b");
         hashMap.put("John3","class2b");
         System.out.println("HashMap after add: " + hashMap);
         System.out.println("HashMap size: "+hashMap.size());

@@ -3,43 +3,42 @@ package hw8;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 
-public class MyArrayList<E> implements MyList {
+public class MyArrayList<E>  {
     private E[] array;
-    private final static int DEFAULT_SIZE = 10;
-    private int size = 0;
-    private final static double LOAD_FACTOR = (double) 3 / 2 + 1;
 
-    public MyArrayList(Class<E> clazz) {
-        this.array = (E[]) Array.newInstance(clazz, DEFAULT_SIZE);
+    public MyArrayList(Class<E> clazz, int size) {
+        this.array = (E[]) Array.newInstance(clazz, size);
     }
 
-    @Override
-    public void add(Object value) {
-        if (array.length <= size) {
-            int newSize = (int) (array.length * LOAD_FACTOR);
-            array = Arrays.copyOf(array, newSize);
-        }
-        array[this.size] = (E) value;
-        size++;
+    public void add(E value) {
+        int size = this.array.length;
+        array = Arrays.copyOf(array, size + 1);
+        array[size] =  value;
+        // size++;
     }
 
-    @Override
     public void remove(int index) {
+        E[] tempArray = this.array;
+        int j = 0;
         if (index > 0 && index <= array.length) {
-            array[index] = null;
+            for (int i = 0; i < this.array.length; i++) {
+                if (i != index) {
+                    tempArray[j++] = this.array[i];
+                }
+            }
+            this.array = Arrays.copyOf(tempArray, this.array.length - 1);
         } else {
             throw new IndexOutOfBoundsException();
         }
+        //  this.size --;
     }
 
-    @Override
     public void clear() {
-        for (int i = 0; i < array.length; i++) {
-            array[i] = null;
-        }
+        this.array = null;
     }
+    //this.size =0;
 
-    @Override
+
     public int size() {
         if (array != null) {
             return array.length;
@@ -48,12 +47,11 @@ public class MyArrayList<E> implements MyList {
         }
     }
 
-    @Override
     public E get(int index) {
-        if (index > this.size || index < 0) {
+        if (index > this.array.length || index < 0) {
             throw new IndexOutOfBoundsException();
         }
-        if (array == null) {
+        if (this.array == null) {
             return null;
         } else {
             return array[index];
@@ -63,13 +61,17 @@ public class MyArrayList<E> implements MyList {
     @Override
     public String toString() {
         String result = "";
+        if (this.array==null){
+            result = "";
+        } else {
+
         for (int i = 0; i < array.length; i++) {
             if (array[i] == null) {
                 result += i == 0 ? "{null}" : ",{null}";
             } else {
                 result += (i == 0 ? "{" + array[i] : ",{" + array[i]) + "}";
             }
-        }
+        }}
         return result;
     }
 }
