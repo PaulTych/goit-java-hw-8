@@ -14,7 +14,6 @@ public class MyArrayList<E>  {
         int size = this.array.length;
         array = Arrays.copyOf(array, size + 1);
         array[size] =  value;
-        // size++;
     }
 
     public void remove(int index) {
@@ -30,14 +29,11 @@ public class MyArrayList<E>  {
         } else {
             throw new IndexOutOfBoundsException();
         }
-        //  this.size --;
     }
 
     public void clear() {
         this.array = null;
     }
-    //this.size =0;
-
 
     public int size() {
         if (array != null) {

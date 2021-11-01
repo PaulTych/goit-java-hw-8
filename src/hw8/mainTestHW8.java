@@ -76,6 +76,7 @@ public class mainTestHW8 {
         MyHashMap <String,String> hashMap = new MyHashMap<>();
         System.out.println("----------------------Test HashMap------------------------------");
         System.out.println("HashMap before add: " + hashMap);
+        hashMap.put(null,"ii");
         hashMap.put("Test","class2a");
         hashMap.put("Den","class1a");
         hashMap.put("Vova","class1b");

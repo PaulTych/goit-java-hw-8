@@ -7,7 +7,7 @@ public class MyHashMap<K, V> {
     private V value;
     private final static int DEFAULT_CAPACITY = 5;
     private int size;
-    private final Node<K, V>  mapTable[] = new Node[DEFAULT_CAPACITY];
+    private final Node<K, V> mapTable[] = new Node[DEFAULT_CAPACITY];
 
     private static class Node<K, V> {
         final int hash;
@@ -38,7 +38,7 @@ public class MyHashMap<K, V> {
             if (o == this)
                 return true;
             if (o == null || this.getClass() != o.getClass()) return false;
-            Node<K,V> e = (Node) o;
+            Node<K, V> e = (Node) o;
             if (this.key == e.getKey() && this.value == e.value) {
                 return true;
             } else {
@@ -48,21 +48,16 @@ public class MyHashMap<K, V> {
 
         @Override
         public final int hashCode() {
-            return Objects.hashCode(key) ^ Objects.hashCode(value);
+            return (key != null ? Objects.hashCode(key) : 0) ^ (value != null ? Objects.hashCode(value) : 0);
         }
     }
 
     static int index(Object key) {
-        return key.hashCode() % DEFAULT_CAPACITY;
+        return (key != null ? Objects.hashCode(key) : 0) %DEFAULT_CAPACITY;
     }
 
     private int existCell(Object key) {
-//        if (key == null) {
-//            if (mapTable[0].getKey() == null) {
-//                return 0;
-//            }
-//        }
-        int i = index(key.hashCode());
+        int i = index(key);
         if (mapTable[i] == null) {
             return -1;
         } else {
@@ -73,7 +68,7 @@ public class MyHashMap<K, V> {
     private Node<K, V> existKey(Object key) {
         int i = existCell(key);
         if (i >= 0) {
-            Node<K,V> element = mapTable[i];
+            Node<K, V> element = mapTable[i];
             for (Node<K, V> n = element; n != null; n = n.next) {
                 if (n.getKey() == key) {
                     return n;
@@ -100,11 +95,12 @@ public class MyHashMap<K, V> {
                         last = n;
                     }
                 }
-                last.next =  new Node<>(hashCode(), (K) key, (V) value, null);
+                last.next = new Node<>(hashCode(), (K) key, (V) value, null);
             }
             size++;
         }
     }
+
     public void remove(Object key) {
         if (existKey(key) != null) {
             int i = index(key);

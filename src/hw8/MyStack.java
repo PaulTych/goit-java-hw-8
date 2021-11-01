@@ -43,6 +43,8 @@ public class MyStack <E>{
             }
             if (curItem.next != null) {
                 curItem.next.prev = curItem.prev;
+            } else {
+                curItem.prev.next=null;
             }
             if (curItem.prev != null) {
                 curItem.prev.next = curItem.next;
@@ -77,11 +79,13 @@ public class MyStack <E>{
     }
 
     public E pop() {
+        E curData;
         if (this.size < 0) {
             throw new NoSuchElementException();
         }
+        //curData =
         remove(0);
-        return (E) this.last.item;
+        return this.last.item;
     }
 
     @Override

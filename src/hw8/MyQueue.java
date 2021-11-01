@@ -80,11 +80,13 @@ public class MyQueue<E> {
     }
 
     public E poll() {
+        E curData;
         if (this.size < 0) {
             throw new NoSuchElementException();
         }
+        curData = this.first.item;
         remove(0);
-        return this.first.item;
+        return curData;
     }
 
     @Override
