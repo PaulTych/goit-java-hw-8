@@ -41,10 +41,12 @@ public class MyStack <E>{
                 curItem = curItem.prev;
                 i++;
             }
+
             if (curItem.next != null) {
                 curItem.next.prev = curItem.prev;
             } else {
                 curItem.prev.next=null;
+                this.last=curItem.prev;
             }
             if (curItem.prev != null) {
                 curItem.prev.next = curItem.next;
@@ -83,7 +85,6 @@ public class MyStack <E>{
         if (this.size < 0) {
             throw new NoSuchElementException();
         }
-        //curData =
         remove(0);
         return this.last.item;
     }

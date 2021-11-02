@@ -57,16 +57,21 @@ public class mainTestHW8 {
 
         MyStack <String> stack = new MyStack<>();
         System.out.println("----------------------Test Stack------------------------------");
-        System.out.println("Queue before add: " + stack);
+        System.out.println("Stack before add: " + stack);
         stack.push(o1);
         stack.push( "Den");
         stack.push("Vova");
+        stack.push("Alex");
+        stack.push("Ann");
         stack.push("John");
         System.out.println("Stack after add: " + stack);
         System.out.println("Stack size: "+stack.size());
         System.out.println("Peek element: "+ stack.peek());
         stack.remove(2);
         System.out.println("Stack after remove 2nd element:" + stack);
+        o2 = stack.pop();
+        System.out.println("Pop element: "+o2);
+        System.out.println("Stack after pop element:" + stack);
         o2 = stack.pop();
         System.out.println("Pop element: "+o2);
         System.out.println("Stack after pop element:" + stack);
