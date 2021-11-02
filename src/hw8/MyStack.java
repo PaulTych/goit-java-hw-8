@@ -85,8 +85,9 @@ public class MyStack <E>{
         if (this.size < 0) {
             throw new NoSuchElementException();
         }
+        curData =this.last.item;
         remove(0);
-        return this.last.item;
+        return curData;
     }
 
     @Override
